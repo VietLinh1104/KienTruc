@@ -1,7 +1,7 @@
 package com.example.KienTruc.Controller;
 
-import com.example.KienTruc.Models.AuthRequest;
-import com.example.KienTruc.Models.AuthResponse;
+import com.example.KienTruc.DTO.AuthRequest;
+import com.example.KienTruc.DTO.AuthResponse;
 import com.example.KienTruc.Models.Users;
 import com.example.KienTruc.Services.UsersService;
 import com.example.KienTruc.Utils.JwtUtil;

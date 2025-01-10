@@ -1,4 +1,4 @@
-package com.example.KienTruc.Models;
+package com.example.KienTruc.DTO;
 
 public class AuthRequest {
     private String username;
