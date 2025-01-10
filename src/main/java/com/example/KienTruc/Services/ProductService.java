@@ -13,6 +13,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+//
 
     // Thêm sản phẩm mới
     public Product addProduct(Product newProduct) {

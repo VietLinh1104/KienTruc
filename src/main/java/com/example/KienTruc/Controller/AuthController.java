@@ -1,6 +1,7 @@
 package com.example.KienTruc.Controller;
 
 import com.example.KienTruc.Models.AuthRequest;
+import com.example.KienTruc.Models.AuthResponse;
 import com.example.KienTruc.Models.Users;
 import com.example.KienTruc.Services.UsersService;
 import com.example.KienTruc.Utils.JwtUtil;
@@ -40,9 +41,8 @@ public class AuthController {
         return new ResponseEntity<>("Đăng ký thành công", HttpStatus.CREATED);
     }
 
-    // Endpoint đăng nhập
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
         String username = authRequest.getUsername();
         String password = authRequest.getPassword();
 
@@ -51,11 +51,16 @@ public class AuthController {
         if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
             // Tạo token khi đăng nhập thành công
             String token = jwtUtil.generateToken(username);
-            return new ResponseEntity<>(token, HttpStatus.OK);
+
+            // Tạo response chứa username và token
+            AuthResponse authResponse = new AuthResponse(username, token);
+
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Tên người dùng hoặc mật khẩu không hợp lệ", HttpStatus.UNAUTHORIZED);
         }
     }
+
 
     @GetMapping("/test")
     public ResponseEntity<String> testEndpoint() {
